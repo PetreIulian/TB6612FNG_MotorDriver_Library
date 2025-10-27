@@ -37,9 +37,9 @@ public:
         analogWrite(PWM, 0);
     }
 
-    void setSpeed(int speed) {
-        speed = constrain(speed, -200, 200);
-        if (speed >= 0) {
+    void setSpeed(int rawSpeed) {
+        int speed = map(abs(rawSpeed), 0, 100, 0, 255);
+        if (rawSpeed > 0) {
             forward(speed);
         }
         else {
@@ -55,3 +55,4 @@ private:
 };
 
 #endif //TB6112FNG_MOTOR_H
+
