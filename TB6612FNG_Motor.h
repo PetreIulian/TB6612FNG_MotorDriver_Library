@@ -43,7 +43,7 @@ public:
             forward(speed);
         }
         else {
-            reverse(-speed);
+            reverse(speed);
         }
     }
 
@@ -55,4 +55,5 @@ private:
 };
 
 #endif //TB6112FNG_MOTOR_H
+
 
