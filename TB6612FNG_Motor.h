@@ -7,34 +7,34 @@
 
 #pragma once
 #include <Arduino.h>
-#include <stdint.h>
 
 class TB6612FNG_Motor {
 public:
-    TB6612FNG_Motor(uint8_t InPin1, uint8_t InPin2 , uint8_t PWM);
+    TB6612FNG_Motor(uint8_t InPin1, uint8_t InPin2 , uint8_t PWM)
+        : in1(InPin1), in2(InPin2), pwm(PWM) {}
 
     void begin() {
-        pinMode(InPin1, OUTPUT);
-        pinMode(InPin2, OUTPUT);
-        pinMode(PWM, OUTPUT);
+        pinMode(in1, OUTPUT);
+        pinMode(in2, OUTPUT);
+        pinMode(pwm, OUTPUT);
     }
 
     void forward(int speed) {
-        digitalWrite(InPin1, HIGH);
-        digitalWrite(InPin2, LOW);
-        analogWrite(PWM, speed);
+        digitalWrite(in1, HIGH);
+        digitalWrite(in2, LOW);
+        analogWrite(pwm, speed);
     }
 
     void reverse(int speed) {
-        digitalWrite(InPin1, LOW);
-        digitalWrite(InPin2, HIGH);
-        analogWrite(PWM, speed);
+        digitalWrite(in1, LOW);
+        digitalWrite(in2, HIGH);
+        analogWrite(pwm, speed);
     }
 
     void breakMotor() {
-        digitalWrite(InPin1, HIGH);
-        digitalWrite(InPin2, HIGH);
-        analogWrite(PWM, 0);
+        digitalWrite(in1, HIGH);
+        digitalWrite(in2, HIGH);
+        analogWrite(pwm, 0);
     }
 
     void setSpeed(int rawSpeed) {
@@ -48,12 +48,11 @@ public:
     }
 
 private:
-    uint8_t InPin1;
-    uint8_t InPin2;
-    uint8_t PWM;
+    uint8_t in1;
+    uint8_t in2;
+    uint8_t pwm;
 
 };
 
 #endif //TB6112FNG_MOTOR_H
-
 
